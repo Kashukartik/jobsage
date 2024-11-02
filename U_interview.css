@@ -1,0 +1,64 @@
+.Container-interview{
+    width: 100%; /* Adjust for sidebar width if needed */
+    /* Center the container */
+    background-color: #fff;
+    padding: 2%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 120px); /* Adjust for navbar and padding */
+    overflow: auto; /* Enable scrolling if content exceeds height */
+}
+
+#interviewsContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.interview-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.interview-card h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+
+.slide-screen {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with transparency */
+}
+
+.slide-content {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    position: absolute; /* Position it */
+    top: 20px; /* Adjust the top position */
+    right: 20px; /* Position from the right */
+    background-color: white; /* White background */
+    padding: 20px; /* Some padding */
+    border-radius: 8px; /* Rounded corners */
+    width: auto; /* Set a width */
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+
+.close-btn {
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 24px; /* Make the close button larger */
+    position: absolute; /* Position it within the slide-content */
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
+}
+

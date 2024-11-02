@@ -1,0 +1,160 @@
+/* Main Styles */
+.container-dashboard {
+    width: 100%; /* Adjust for sidebar width if needed */
+    /* Center the container */
+    background-color: #fff;
+    padding: 2%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 120px); /* Adjust for navbar and padding */
+    overflow: auto; /* Enable scrolling if content exceeds height */
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2.5em; /* Larger heading for better visibility */
+    color: #2c3e50; /* Darker gray for a more professional look */
+    margin-bottom: 25px; /* Space below the heading */
+    font-weight: 600; /* Semi-bold for emphasis */
+}
+
+/* Stats Section Styles */
+.stats {
+    display: flex; /* Horizontal layout */
+    justify-content: space-between; /* Evenly space cards */
+    margin-bottom: 40px; /* More space below stats section */
+}
+
+/* Stat Card Styles */
+.stat-card {
+    background-color: #ecf0f1; /* Light gray background for cards */
+    border-radius: 10px; /* Slightly larger rounded corners */
+    padding: 20px; /* Increased padding for better content spacing */
+    flex: 1; /* Equally distribute space */
+    margin-right: 20px; /* Space between cards */
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15); /* Card shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transform and shadow on hover */
+}
+
+.stat-card:last-child {
+    margin-right: 0; /* Remove right margin for last card */
+}
+
+.stat-card h2 {
+    margin: 0; /* Remove default margin */
+    font-size: 1.6em; /* Medium heading for card titles */
+    color: #2980b9; /* Strong blue for headings */
+    font-weight: 600; /* Semi-bold for emphasis */
+}
+
+.stat-card p {
+    margin: 10px 0; /* Space above and below the paragraph */
+    color: #34495e; /* Darker gray color for text */
+    font-size: 1em; /* Standard font size */
+}
+
+/* Button Styles */
+.view-button, .apply-button {
+    display: inline-block; /* Makes the button inline */
+    margin-top: 15px; /* Space above the button */
+    background-color: #2980b9; /* Primary button color */
+    color: #ffffff; /* White text color */
+    padding: 12px 18px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-weight: 500; /* Medium font weight */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth background change and scale effect */
+}
+
+.view-button:hover, .apply-button:hover {
+    background-color: #1a5276; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* Latest Jobs Section Styles */
+.latest-jobs {
+    margin-top: 30px; /* Space above the latest jobs section */
+}
+
+.latest-jobs h2 {
+    font-size: 2em; /* Large heading for the jobs section */
+    color: #2c3e50; /* Dark gray for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    font-weight: 600; /* Semi-bold for emphasis */
+}
+
+.latest-jobs ul {
+    list-style: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+}
+
+.latest-jobs li {
+    background-color: #ecf0f1; /* Light job listing background */
+    padding: 15px; /* Padding for each job listing */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 15px; /* Space between listings */
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15); /* Listing shadow */
+    transition: transform 0.2s; /* Smooth transform on hover */
+}
+
+.latest-jobs li:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.latest-jobs h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 1.4em; /* Medium heading for job titles */
+    color: #34495e; /* Darker gray for job titles */
+}
+
+.latest-jobs p {
+    margin: 5px 0; /* Space above and below job location */
+    color: #7f8c8d; /* Softer text color for locations */
+    font-size: 0.9em; /* Slightly smaller font size for location */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .stats {
+        flex-direction: column; /* Stack cards vertically on smaller screens */
+    }
+    .stat-card {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 20px; /* Space between stacked cards */
+    }
+}
+
+
+.slide-screen {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with transparency */
+}
+
+.slide-content {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    position: absolute; /* Position it */
+    top: 20px; /* Adjust the top position */
+    right: 20px; /* Position from the right */
+    background-color: white; /* White background */
+    padding: 20px; /* Some padding */
+    border-radius: 8px; /* Rounded corners */
+    width: auto; /* Set a width */
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+
+.close-btn {
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 24px; /* Make the close button larger */
+    position: absolute; /* Position it within the slide-content */
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
+}
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="nav&sideBAR.css">
+    <link rel="stylesheet" href="R_jobMngt.css">
+    <title>Job Management</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <div id="settingsSlide" class="slide-screen">
+                <div class="slide-content">
+                    <span class="close-btn" onclick="closeSettings()">&times;</span>
+                    <h2>Settings</h2>
+                    <br>
+                    <a href="R_profile.html" target="_self">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span><h2>Profile</h2></span>
+                    </a>
+                    <a href="ChangePassword.html" target="_self">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span><h2>Change Credentails</h2></span>
+                    </a>
+                    <!-- Add any other settings content here -->
+                </div>
+            </div>
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="IMG_Man.jpg" alt="User IMAGE">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+
+            <ul class="menu one">
+                <li>
+                    <a href="R_dashboard.html" target="_self">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="R_JobMngt.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Job Posting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="R_appli_details.html">
+                      <ion-icon name="people-outline"></ion-icon>
+                      <span>Applicants</span>
+                    </a>
+                  </li>
+                <li>
+                    <a href="R_interviewDashboard.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="events">
+            <div class="container-job">
+                <h1>Job Posting</h1>
+                <div class="card">
+                    <h2 class="inside">Create Job</h2>
+                    <p class="inside">Start a new job posting.</p>
+                    <!-- link the R_Create.html file here -->
+                    <button class="inside" onclick="window.location.href = 'R_jobCreate.html' ">Create</button>
+                </div>
+                <div id="jobCardsContainer"></div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- Edit Job Modal -->
+    <div id="editJobModal" style="display:none;">
+        <form id="editJobForm" onsubmit="updateJob(event)">
+            <h2>Edit Job</h2>
+            <br>
+            <div class="form-group">
+                <label for="editJobTitle">Job Title</label>
+                <input type="text" id="editJobTitle" name="jobTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="editJobDescription">Job Description</label>
+                <textarea id="editJobDescription" name="jobDescription" required minlength="50"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editDepartment">Department</label>
+                <select id="editDepartment" name="department" required>
+                    <option value="" disabled selected>Select a department</option>
+                    <option value="HR">HR</option>
+                    <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Sales">Sales</option>
+                    <!-- Add more departments as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editJobLocation">Job Location</label>
+                <input type="text" id="editJobLocation" name="jobLocation" required>
+            </div>
+            <div class="form-group">
+                <label for="editEmploymentType">Employment Type</label>
+                <select id="editEmploymentType" name="employmentType" required>
+                    <option value="" disabled selected>Select employment type</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editSalaryRange">Salary Range</label>
+                <input type="text" id="editSalaryRange" name="salaryRange" required>
+            </div>
+            <div class="form-group">
+                <label for="editApplicationDeadline">Application Deadline</label>
+                <input type="date" id="editApplicationDeadline" name="applicationDeadline" required>
+            </div>
+            <div class="form-group">
+                <label for="editRequiredQualifications">Required Qualifications</label>
+                <textarea id="editRequiredQualifications" name="requiredQualifications" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editPreferredQualifications">Preferred Qualifications</label>
+                <textarea id="editPreferredQualifications" name="preferredQualifications"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editResponsibilities">Responsibilities</label>
+                <textarea id="editResponsibilities" name="responsibilities" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" onclick="updateJob(event)">Update Job</button>
+                <button type="button" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="R_jobMngt.js"></script>
+</body>
+
+</html>

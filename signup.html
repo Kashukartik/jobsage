@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up </title>
+    <link rel="stylesheet" href="login&signup.css">
+</head>
+
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm" onsubmit="signup(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input class="input1" type="text" id="name" name="name" autocomplete="name"
+                    placeholder=" Enter fullname">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="input1" type="email" id="email" placeholder="Enter your Email@" name="email"
+                    autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="input1" type="password" name="password" placeholder="password" id="password"
+                    autocomplete="current-password">
+            </div>
+            <div class="form-group">
+                <label for="role">Select your role:</label>
+                <select name="role" id="role">
+                    <option disabled selected>Select your role</option>
+                    <option value="job-seeker">Job Seeker</option>
+                    <option value="recruiter">Recruiter</option>
+                </select>
+            </div>
+
+            <button type="submit" class="sign-up-button">Sign Up</button>
+        </form>
+        <div class="links">
+            <a href="login.html">Back to Login</a>
+        </div>
+    </div>
+    <script src="signup.js" type="module"></script>
+</body>
+
+</html>

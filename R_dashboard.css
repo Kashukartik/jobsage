@@ -1,0 +1,117 @@
+/* Dashboard Section */
+.container-dash {
+    width: 100%; /* Adjust for sidebar width if needed */
+    margin: 20px auto; /* Center the container */
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 120px); /* Adjust for navbar and padding */
+    overflow: auto; /* Enable scrolling if content exceeds height */
+  }
+  
+  #summary {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      width: 100%;
+  }
+  
+  .summary-item {
+      flex: 1;
+      padding: 20px;
+      margin: 0 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-color-light);
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .summary-item h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--text-color);
+  }
+  
+  .summary-item p {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--text-color);
+  }
+  
+  /* Recent Applications Table */
+  #recentApplications {
+      margin-top: 20px;
+      width: 100%;
+  }
+  
+  #recentApplicationsTable {
+      width: 100%;
+      border-collapse: collapse;
+  }
+  
+  #recentApplicationsTable th,
+  #recentApplicationsTable td {
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      text-align: left;
+  }
+  
+  #recentApplicationsTable th {
+      background-color: var(--bg-color-light);
+      color: var(--text-color);
+  }
+  
+  /* Buttons */
+  button {
+      margin: 10px 0;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary-color);
+      color: var(--text-color-light);
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+  }
+  
+  button:hover {
+      background-color: var(--accent-color);
+  }
+  
+  
+  
+.slide-screen {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with transparency */
+}
+
+.slide-content {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    position: absolute; /* Position it */
+    top: 20px; /* Adjust the top position */
+    right: 20px; /* Position from the right */
+    background-color: white; /* White background */
+    padding: 20px; /* Some padding */
+    border-radius: 8px; /* Rounded corners */
+    width: auto; /* Set a width */
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+
+.close-btn {
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 24px; /* Make the close button larger */
+    position: absolute; /* Position it within the slide-content */
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
+}
+
