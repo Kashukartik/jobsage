@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/public/CSS/nav&sideBAR.css">
+    <link rel="stylesheet" href="/public/CSS/U_applications.css">
+    <title>Applications</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <div id="settingsSlide" class="slide-screen">
+                <div class="slide-content">
+                    <span class="close-btn" onclick="closeSettings()">&times;</span>
+                    <h2>Settings</h2>
+                    <br>
+                    <a href="U_profile.html" target="_self">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span><h2>Profile</h2></span>
+                    </a>
+                    <a href="ChangePassword.html" target="_self">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span><h2>Change Credentails</h2></span>
+                    </a>
+                    <!-- Add any other settings content here -->
+                </div>
+            </div>
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="/public/IMAGE/Man.jpg" alt="User IMAGE">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+            <ul class="menu one">
+                <li class="active">
+                    <a href="U_dashboard.html" target="_self">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="jobpage.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Jobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_Applications.html">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                        <span>Applications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_interview.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="events">
+            <div class="Container-application">
+                <h1>Your Applications</h1>
+                <div id="applicationsContainer">
+                    <p id="noApplicationsMessage">Loading your applications...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="applicantDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="applicantDetailsContainer" class="details-card">
+                <!-- Application details will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script type="module" src="/src/component/Application/U_Applications.js"></script>
+</body>
+
+</html>
+
+<!-- completed -->

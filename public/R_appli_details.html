@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/public/CSS/nav&sideBAR.css">
+    <link rel="stylesheet" href="/public/CSS/R_appli_details.css" />
+    <title>Applicants Dashboard</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <div id="settingsSlide" class="slide-screen">
+                <div class="slide-content">
+                    <span class="close-btn" onclick="closeSettings()">&times;</span>
+                    <h2>Settings</h2>
+                    <br>
+                    <a href="R_profile.html" target="_self">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span><h2>Profile</h2></span>
+                    </a>
+                    <a href="ChangePassword.html" target="_self">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span><h2>Change Credentails</h2></span>
+                    </a>
+                    <!-- Add any other settings content here -->
+                </div>
+            </div>
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="/public/IMAGE/Man.jpg" alt="User IMAGE">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+            <ul class="menu one">
+                <li>
+                    <a href="R_dashboard.html" target="_self">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="R_JobMngt.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Job Posting</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="R_appli_details.html">
+                      <ion-icon name="people-outline"></ion-icon>
+                      <span>Applicants</span>
+                    </a>
+                  </li>
+                <li>
+                    <a href="R_interviewDashboard.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="events">
+
+            <div class="container-dash">
+                <h1>Applications Management</h1>
+                <br>
+                <!-- <section id="filters">
+                    <h2>Filters</h2>
+                    <div class="filter-group">
+                        <label for="jobTitle">Job Title</label>
+                        <select id="jobTitle" name="jobTitle">
+                            <option value="">Select job title</option>
+                            <option value="">Select job title</option>
+                            <option value="">Select job title</option>
+                            <option value="">Select job title</option>
+                            <option value="">Select job title</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="">Select status</option>
+                            <option value="applied">Applied</option>
+                            <option value="in_review">In Review</option>
+                            <option value="interview">Interview</option>
+                            <option value="offered">Offered</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="dateRange">Date Applied</label>
+                        <input type="text" id="dateRange" name="dateRange" placeholder="Select date range">
+                    </div>
+                    <button id="applyFilters">Apply Filters</button>
+                </section> -->
+
+                <section id="applicationsList">
+                    <h2>Applications List</h2>
+                    <p>Number of Applications: <strong><span id="applicationsCount">0</span></strong></p>
+                    <br>
+                    <table id="applicationsListTable">
+                        <thead>
+                            <tr>
+                                <th>Applicant Name</th>
+                                <th>Job Title</th>
+                                <th>Status</th>
+                                <th>Date Applied</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Applications will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="overlay" style="display: none;">
+        <div class="container-app">
+            <h1>Application Details</h1>
+            <br>
+            <section id="applicantInformation">
+                <h2>Applicant Information</h2>
+                <p><strong>Name:</strong> <span id="applicantName"></span></p>
+                <p><strong>Email:</strong> <span id="applicantEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="applicantPhone"></span></p>
+                <p><strong>Cover Letter:</strong> <span id="coverLetter"></span></p>
+                <p><strong>Portfolio:</strong> <span id="portfolio"></span></p>
+                <p><strong>LinkedIn:</strong> <span id="linkedin"></span></p>
+                <br>
+                <p><a href="#" id="resumeLink" download>Download Resume</a></p>
+            </section>
+            <br>
+            <section id="jobInformation">
+                <h2>Job Information</h2>
+                <p><strong>Job Title:</strong> <span id="jobTitle"></span></p>
+                <p><strong>Department:</strong> <span id="jobDepartment"></span></p>
+                <p><strong>Location:</strong> <span id="jobLocation"></span></p>
+                <p><strong>Description:</strong> <span id="jobDescription"></span></p>
+                <p><strong>Requirements:</strong> <span id="jobRequirements"></span></p>
+                <p><strong>Salary:</strong> <span id="jobSalary"></span></p>
+                <p><strong>Job Type:</strong> <span id="jobType"></span></p>
+                <p><strong>Apply Before:</strong> <span id="jobPostedDate"></span></p>
+            </section>
+
+            <section id="applicationStatus">
+                <h2>Application Status</h2>
+                <p><strong>Current Status:</strong> <span id="currentStatus">In Review</span></p>
+                <div>
+                    <label for="statusDropdown">Change Status</label>
+                    <select id="statusDropdown" name="statusDropdown">
+                        <option value="" disabled selected>Change Status</option>
+                        <option value="applied">Applied</option>
+                        <option value="in_review">In Review</option>
+                        <option value="interview">Interview</option>
+                        <option value="offered">Offered</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <br>
+                    <button id="saveStatus" onclick="saveStatus()">Save
+                        Status</button>
+                </div>
+            </section>
+
+            <section id="notesSection">
+                <h2>Notes</h2>
+                <textarea id="notesTextarea" placeholder="Add notes about the application"></textarea>
+                <button id="saveNotes" onclick="saveNotes()">Save Notes</button>
+            </section>
+
+            <button type="button" class="close-btn" onclick="closeOverlay()">Close</button>
+        </div>
+    </div>
+
+
+
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="/src/component/Application/ApplicationsDetails.js"></script>
+</body>
+
+</html>

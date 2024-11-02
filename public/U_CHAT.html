@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/CSS/nav&sideBAR.css">
+    <link rel="stylesheet" href="/public/CSS/U_CHAT.css">
+    <title>Job Management</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">JOB-SAGE</div>
+            <div class="nav-menu">
+                <a href="#" id="nav-settings" aria-label="Settings">
+                    <ion-icon name="settings-outline"></ion-icon>
+                    <span>Settings</span>
+                </a>
+                <a href="#" id="nav-logout" aria-label="Log out">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <span>Log out</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <p id="user-initials"></p>
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+
+            <ul class="menu one">
+                <li>
+                    <a href="R_dashboard.html">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#" target="_self">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Job Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="R_InterviewDashboard.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="events">
+            <div class="chat-interface">
+                <!-- Left panel for recruiter list -->
+                <div class="recruiter-list">
+                    <div class="button-container">
+                        <button type="button" onclick="addRecruiter()">ADD Recruiter</button>
+                    </div>
+                    <br>
+                    <h2>Recruiters</h2>
+                    <ul id="recruiterList">
+                        <!-- Example recruiter, dynamically add more via JavaScript -->
+                        <li onclick="openChat('recruiter1')">Recruiter 1</li>
+                        <li onclick="openChat('recruiter2')">Recruiter 2</li>
+                    </ul>
+                    
+                </div>
+
+                <!-- Chat box for messaging -->
+                <div class="chat-box">
+                    <div id="chatHeader">
+                        <h3 id="recruiterName">Select a recruiter to chat</h3>
+                    </div>
+                    <div id="messagesContainer" class="messages-container"></div>
+                    <div class="chat-input">
+                        <input type="text" id="messageInput" placeholder="Type your message...">
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

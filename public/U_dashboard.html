@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/public/CSS/nav&sideBAR.css">
+    <link rel="stylesheet" href="/public/CSS/U_dashboard.css">
+    <title>User Dashboard</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <div id="settingsSlide" class="slide-screen">
+                <div class="slide-content">
+                    <span class="close-btn" onclick="closeSettings()">&times;</span>
+                    <h2>Settings</h2>
+                    <br>
+                    <a href="U_profile.html" target="_self">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span><h2>Profile</h2></span>
+                    </a>
+                    <a href="ChangePassword.html" target="_self">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span><h2>Change Credentails</h2></span>
+                    </a>
+                    <!-- Add any other settings content here -->
+                </div>
+            </div>
+            
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="/public/IMAGE/Man.jpg" alt="User IMAGE">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+            <ul class="menu one">
+                <li class="active">
+                    <a href="U_dashboard.html" target="_self">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="jobpage.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Jobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_Applications.html">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                        <span>Applications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_interview.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="events">
+            <div class="container-dashboard">
+                <h1 id="welcome-heading"></h1>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h2>Job Recommendations</h2>
+                        <p>5 new jobs matching your profile</p>
+                        <a href="#" class="view-button">View Jobs</a>
+                    </div>
+                    <div class="stat-card">
+                        <h2>Applications Submitted</h2>
+                        <p>3 applications in progress</p>
+                        <a href="#" class="view-button">View Applications</a>
+                    </div>
+                    <div class="stat-card">
+                        <h2>Upcoming Interviews</h2>
+                        <p>1 interview scheduled</p>
+                        <a href="#" class="view-button">View Interview</a>
+                    </div>
+                </div>
+
+                <div class="latest-jobs">
+                    <h2>Latest Job Listings</h2>
+                    <ul>
+                        <li>
+                            <h3>Frontend Developer at XYZ Corp</h3>
+                            <p>Location: Remote</p>
+                            <a href="U_applyJob.html" class="apply-button">Apply Now</a>
+                        </li>
+                        <li>
+                            <h3>Backend Developer at ABC Inc.</h3>
+                            <p>Location: On-site</p>
+                            <a href="U_applyJob.html" class="apply-button">Apply Now</a>
+                        </li>
+                        <li>
+                            <h3>Data Scientist at Data Solutions</h3>
+                            <p>Location: Hybrid</p>
+                            <a href="U_applyJob.html" class="apply-button">Apply Now</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script type="module" src="/src/component/User/U_dashboard.js"></script>
+</body>
+
+</html>
+
+<!-- completed -->
