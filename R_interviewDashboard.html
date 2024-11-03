@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="nav&sideBAR.css">
+    <link rel="stylesheet" href="R_interviewDashboard.css" />
+    <title>Applicants Dashboard</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <div id="settingsSlide" class="slide-screen">
+                <div class="slide-content">
+                    <span class="close-btn" onclick="closeSettings()">&times;</span>
+                    <h2>Settings</h2>
+                    <br>
+                    <a href="R_profile.html" target="_self">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span><h2>Profile</h2></span>
+                    </a>
+                    <a href="ChangePassword.html" target="_self">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span><h2>Change Credentails</h2></span>
+                    </a>
+                    <!-- Add any other settings content here -->
+                </div>
+            </div>
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="IMG_Man.jpg" alt="User IMAGE">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+            <ul class="menu one">
+                <li>
+                    <a href="R_dashboard.html" target="_self">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="R_JobMngt.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Job Posting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="R_appli_details.html">
+                      <ion-icon name="people-outline"></ion-icon>
+                      <span>Applicants</span>
+                    </a>
+                  </li>
+                <li class="active">
+                    <a href="R_interviewDashboard.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="events">
+            <div class="dashboard-container">
+                <h1>Interview Scheduling Dashboard</h1>
+
+                <section id="upcomingInterviews">
+                    <h2>Upcoming Interviews</h2>
+                    <p id="upcomingInterviewsCount">Number of upcoming interviews: <strong><span
+                                id="interviewsCountDisplay">0</span></strong></p>
+                    <button id="scheduleNewInterview"
+                        onclick="window.location.href = 'R_interviewScheduling.html' ">Schedule New Interview</button>
+
+                </section>
+
+                <section id="interviewsList">
+                    <h2>Interviews List</h2>
+                    <table id="interviewsTable">
+                        <thead>
+                            <tr>
+                                <th>Applicant Name</th>
+                                <th>Job Title</th>
+                                <th>Interview Date</th>
+                                <th>Interview Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Interview rows will be dynamically populated here -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="interview-details-container overlay">
+        <div class="overlay-content">
+            <h1>Interview Details</h1>
+            <!-- Interview details here -->
+            <section class="info-section">
+                <h2>Applicant Information</h2>
+                <p><strong>Name:</strong> <span id="applicantName"></span></p>
+                <p><strong>Email:</strong> <span id="applicantEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="applicantPhone"></span></p>
+            </section>
+
+            <section class="info-section">
+                <h2>Job Information</h2>
+                <p><strong>Job Title:</strong> <span id="jobTitle"></span></p>
+                <p><strong>Department:</strong> <span id="jobDepartment"></span></p>
+                <p><strong>Location:</strong> <span id="jobLocation"></span></p>
+            </section>
+
+            <section class="info-section">
+                <h2>Interview Information</h2>
+                <p><strong>Interview Date:</strong> <span id="interviewDate"></span></p>
+                <p><strong>Interview Time:</strong> <span id="interviewTime"></span></p>
+                <p><strong>Interview Mode:</strong> <span id="interviewMode"></span></p>
+                <p id="interviewLocationContainer" style="display: block;">
+                    <strong>Interview Location:</strong> <span id="interviewLocation"></span>
+                </p>
+                <p><strong>Interviewers:</strong> <span id="interviewers"></span></p>
+            </section>
+
+            <div class="form-actions">
+                <button id="rescheduleInterview">Reschedule Interview</button>
+                <button id="cancelInterview">Cancel Interview</button>
+            </div>
+            <br>
+            <button onclick="closeOverlay1()" class="closeBtn">Close</button> <!-- Optional close button -->
+        </div>
+    </div>
+
+
+
+    <div class="reschedule-container overlay" id="rescheduleContainer" style="display: none;">
+        <div class="overlay-content">
+            <h1>Reschedule Interview</h1>
+            <form id="rescheduleForm" onsubmit="handleReschedule(event)">
+                <div class="form-group">
+                    <label for="newDate">Interview Date</label>
+                    <input type="date" id="newDate" name="newDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="newTime">Interview Time</label>
+                    <input type="time" id="newTime" name="newTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="interviewLocation">Interview Location</label>
+                    <input type="text" id="interviewLocation" name="interviewLocation"
+                        placeholder="Enter new location (if in-person)">
+                </div>
+
+                <button type="submit" id="scheduleNewInterview">Reschedule Interview</button>
+            </form>
+            <br>
+            <button onclick="closeOverlay2()" class="closeBtn">Close</button> <!-- Optional close button -->
+        </div>
+    </div>
+
+
+    <!-- IONICONS -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="R_interviewDashboard.js"></script>
+</body>
+
+</html>

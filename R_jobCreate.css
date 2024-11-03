@@ -1,0 +1,105 @@
+
+.job-creation-container {
+    background-color: var(--bg-color-light); /* Use light background color */
+    padding: 30px; /* Increased padding for better spacing */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow for a more pronounced effect */
+    width: 100%; /* Increased width for a larger container */
+    max-height: 90vh; /* Keeps the container scrollable if the content is too long */
+    overflow-y: auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: var(--text-color); /* Consistent text color */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased margin for better spacing */
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px; /* Increased margin for better spacing */
+    color: var(--text-color); /* Use main text color */
+}
+
+input[type="text"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 10px; /* Increased padding for better input visibility */
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid var(--border-color); /* Consistent border color */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px; /* Increased minimum height for better text area visibility */
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Added margin for better spacing */
+}
+
+button {
+    padding: 12px 20px; /* Increased padding for larger buttons */
+    background-color: var(--primary-color); /* Use primary color for buttons */
+    color: var(--text-color-light); /* Consistent light text color */
+    border: none;
+    border-radius: 50px; /* Increased border-radius for a more curved appearance */
+    cursor: pointer;
+    font-size: 16px; /* Increased font size for better readability */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+}
+
+button:hover {
+    background-color: var(--accent-color); /* Accent color for hover effect */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+button[type="button"] {
+    background-color: #6c757d; /* Retained the neutral color for secondary buttons */
+}
+
+button[type="button"]:hover {
+    background-color: #5a6268;
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+
+.slide-screen {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with transparency */
+}
+
+.slide-content {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    position: absolute; /* Position it */
+    top: 20px; /* Adjust the top position */
+    right: 20px; /* Position from the right */
+    background-color: white; /* White background */
+    padding: 20px; /* Some padding */
+    border-radius: 8px; /* Rounded corners */
+    width: auto; /* Set a width */
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+
+.close-btn {
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 24px; /* Make the close button larger */
+    position: absolute; /* Position it within the slide-content */
+    top: 10px; /* Position from the top */
+    right: 10px; /* Position from the right */
+}
+
