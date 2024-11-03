@@ -77,6 +77,9 @@ window.login = async function (e) {
                     alert("You are being redirected to the Recruiter Dashboard");
                     window.location.href = "R_dashboard.html";
                 }
+            } else if (userRole === 'admin') {
+                alert(`Welcome Admin - ${userName}, Successfully logged in`);
+                window.location.href = "Admin_dashboard.html";
             }
         } else {
             alert("Invalid email or password");

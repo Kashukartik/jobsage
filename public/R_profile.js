@@ -231,3 +231,25 @@ window.onclick = function(event) {
         closeSettings();
     }
 };
+
+    // Function to handle user sign out
+    window.signOut = async function () {
+        // Clear session data
+        clearUserSession(); // Function to clear your session storage or cookies
+        alert("You have successfully signed out.");
+        window.location.href = 'index.html'; // Change to your login page URL
+    };
+    
+    // Attach the sign out logic to the logout link
+    document.getElementById("nav-logout").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default anchor click behavior
+        signOut(); // Call the sign-out function
+    });
+    
+    // Function to clear user session (example implementation)
+    function clearUserSession() {
+        // Clear specific session data (localStorage, sessionStorage, cookies, etc.)
+        localStorage.removeItem('userSession'); // Adjust based on your implementation
+        sessionStorage.clear(); // Clear session storage if you're using it
+        // Optionally clear cookies if you're using them
+    }

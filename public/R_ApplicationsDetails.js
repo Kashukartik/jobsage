@@ -86,73 +86,6 @@ window.currentJobId = null; // Initialize as null
 window.currentApplicationId = null; // Initialize as null
 
 
-// async function loadAllApplicationsByRecruiter() {
-//     const sessionData = getUserSession();
-//     const recruiterId = sessionData.userId;
-
-//     if (!recruiterId) {
-//         console.error("Recruiter ID not provided.");
-//         return;
-//     }
-
-//     try {
-//         const jobsQuery = query(
-//             collection(db, "JobPostings"),
-//             where("recruiterId", "==", recruiterId)
-//         );
-//         const jobsSnap = await getDocs(jobsQuery);
-
-//         const jobDataMap = {};
-//         jobsSnap.forEach((doc) => {
-//             jobDataMap[doc.id] = doc.data().jobTitle;
-//         });
-
-//         if (Object.keys(jobDataMap).length === 0) {
-//             console.log("No jobs found for this recruiter.");
-//             return;
-//         }
-
-//         const applications = [];
-
-//         for (const jobId of Object.keys(jobDataMap)) {
-//             const applicationsRef = collection(db, "JobPostings", jobId, "Applications");
-//             const applicationsQuery = query(applicationsRef, orderBy("appliedAt", "desc"));
-//             const applicationsSnap = await getDocs(applicationsQuery);
-
-//             applicationsSnap.forEach((doc) => {
-//                 const applicationData = doc.data();
-//                 applicationData.jobId = jobId;
-//                 applicationData.jobTitle = jobDataMap[jobId];
-//                 applicationData.id = doc.id;
-//                 applications.push(applicationData);
-//             });
-//         }
-
-//         applications.sort((a, b) => b.appliedAt.toDate() - a.appliedAt.toDate());
-
-//         const tableBody = document.querySelector("#applicationsListTable tbody");
-//         tableBody.innerHTML = "";
-
-//         applications.forEach((applicationData) => {
-//             const row = document.createElement("tr");
-
-//             row.innerHTML = `
-//                 <td>${applicationData.name}</td>
-//                 <td>${applicationData.jobTitle || "N/A"}</td>
-//                 <td>${applicationData.status}</td>
-//                 <td>${applicationData.appliedAt.toDate().toLocaleDateString()}</td>
-//                 <td><button onclick="viewApplicationDetails('${applicationData.jobId}', '${applicationData.id}')">View</button></td>
-//             `;
-//             console.log("1--", applicationData);
-
-//             tableBody.appendChild(row);
-//         });
-//     } catch (error) {
-//         console.error("Error loading all applications by recruiter: ", error);
-//     }
-// }
-
-
 async function loadAllApplicationsByRecruiter() {
     // Get the recruiterId from session storage
     const userSession = getUserSession();
@@ -305,20 +238,6 @@ window.closeOverlay = function () {
 }
 
 
-// Load application details when the page loads
-// function () {
-//     const jobId = "YOUR_JOB_ID_HERE"; // Replace with actual job ID
-//     const applicationId = "YOUR_APPLICATION_ID_HERE"; // Replace with actual application ID
-//     loadApplicationDetails(jobId, applicationId);
-
-//     // Attach event listeners to buttons
-//     document.getElementById("saveStatus").onclick = function () {
-//         saveStatus(jobId, applicationId);
-//     };
-//     document.getElementById("saveNotes").onclick = function () {
-//         saveNotes(jobId, applicationId);
-//     };
-// };
 
 window.onload = async function countApplicationsByRecruiter() {
     const userSession = getUserSession();

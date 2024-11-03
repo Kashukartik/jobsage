@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Resume Extractor & AI Interview Question Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <link rel="stylesheet" href="nav&sideBAR.css">
+    <link rel="stylesheet" href="U_InterviewQs.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <div id="settingsSlide" class="slide-screen">
+                <div class="slide-content">
+                    <span class="close-btn" onclick="closeSettings()">&times;</span>
+                    <h2>Settings</h2>
+                    <br>
+                    <a href="U_profile.html" target="_self">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span>
+                            <h2>Profile</h2>
+                        </span>
+                    </a>
+                    <a href="ChangePassword.html" target="_self">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span>
+                            <h2>Change Credentails</h2>
+                        </span>
+                    </a>
+                    <!-- Add any other settings content here -->
+                </div>
+            </div>
+
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <img src="IMG_Man.jpg" alt="User IMAGE">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+            <ul class="menu one">
+                <li>
+                    <a href="U_dashboard.html" target="_self">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_jobpage.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Jobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_Applications.html">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                        <span>Applications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="U_interview.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="U_InterviewQs.html">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>AI Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="events">
+            <div id="Interview-containe" style="width: 100%; /* Adjust for sidebar width if needed */
+            margin: 20px auto; /* Center the container */
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: calc(100vh - 120px); /* Adjust for navbar and padding */
+            overflow: auto; /* Enable scrolling if content exceeds height */">
+                <h1>AI Interview Question Generator</h1>
+                <br>
+                <input type="file" id="fileInput" accept="application/pdf">
+                <div id="output"></div>
+                <div id="container">
+                    <h2>Generated Interview Questions</h2>
+                    <p id="questionPrompt">Upload a resume to get started!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, setDoc, doc, getDocs, getDoc, updateDoc, deleteDoc, query, orderBy, where, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB_w8OzEj_oPhr8v_SY9Dj00B-fKdtPr8o",
+            authDomain: "simple-92a80.firebaseapp.com",
+            databaseURL: "https://simple-92a80-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "simple-92a80",
+            storageBucket: "simple-92a80.appspot.com",
+            messagingSenderId: "93667770846",
+            appId: "1:93667770846:web:bdca6b2512665d87cf9d4f",
+            measurementId: "G-KY8B95HGN6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        // Function to retrieve user session data
+        function getUserSession() {
+            const userSession = sessionStorage.getItem('user');
+            return userSession ? JSON.parse(userSession) : null;
+        }
+
+
+        window.onload = async function () {
+            // Retrieve user session for authorization
+            const sessionData = getUserSession();
+            if (!sessionData) {
+                console.log("No user session found.");
+                // Optionally redirect to login page or display a message
+                return;
+            }
+
+            const docId = sessionData.name; // Assuming the user object in session contains the name
+            const userDocRef = doc(db, "JobSeeker", docId); // Reference to the document in "Users" collection
+
+            try {
+                const docSnap = await getDoc(userDocRef);
+
+                if (docSnap.exists()) {
+                    // Retrieve only the `name` and `position` fields
+                    const name = docSnap.data().name;
+                    const position = docSnap.data().position;
+
+                    console.log("Name:", name);
+                    console.log("Position:", position);
+
+                    // Display name and position on the webpage
+                    document.getElementById("user-name").innerText = `${name}`;
+                    document.getElementById("user-designation").innerText = `${position}`;
+                    document.querySelector("#welcome-heading").innerHTML = `Welcome, ${name}!`;
+                } else {
+                    console.log("No such document!");
+                }
+            } catch (error) {
+                console.error("Error fetching document: ", error);
+            }
+        };
+
+
+        // Function to handle user sign out
+        window.signOut = async function () {
+            // Clear session data
+            clearUserSession(); // Function to clear your session storage or cookies
+            alert("You have successfully signed out.");
+            window.location.href = 'index.html'; // Change to your login page URL
+        };
+
+        // Attach the sign out logic to the logout link
+        document.getElementById("nav-logout").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            signOut(); // Call the sign-out function
+        });
+
+        // Function to clear user session (example implementation)
+        function clearUserSession() {
+            // Clear specific session data (localStorage, sessionStorage, cookies, etc.)
+            localStorage.removeItem('userSession'); // Adjust based on your implementation
+            sessionStorage.clear(); // Clear session storage if you're using it
+            // Optionally clear cookies if you're using them
+        }
+
+
+
+
+        document.getElementById('nav-settings').onclick = function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            openSettings(); // Call function to open settings
+        };
+
+        function openSettings() {
+            document.getElementById('settingsSlide').style.display = 'block'; // Show the settings slide
+        }
+
+        window.closeSettings = function () {
+            document.getElementById('settingsSlide').style.display = 'none'; // Hide the settings slide
+        }
+
+        // Close the settings slide when clicking outside the content
+        window.onclick = function (event) {
+            const settingsPanel = document.getElementById('settingsSlide');
+            if (event.target === settingsPanel) {
+                closeSettings();
+            }
+        };
+
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        const API_KEY = "AIzaSyDSNisNtkGsDZHVMfUFj7uvZJU9JR7qCXc"; // Replace with your actual API key
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        const fileInput = document.getElementById('fileInput');
+        const outputDiv = document.getElementById('output');
+        const containerDiv = document.getElementById('container');
+        const questionPrompt = document.getElementById('questionPrompt');
+
+        fileInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const fileReader = new FileReader();
+                fileReader.onload = async (e) => {
+                    const typedarray = new Uint8Array(e.target.result);
+                    const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                    const numPages = pdf.numPages;
+                    let textContent = '';
+
+                    // Loop through all pages to extract text
+                    for (let i = 1; i <= numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const content = await page.getTextContent();
+                        const textItems = content.items;
+                        textItems.forEach((item) => {
+                            textContent += item.str + ' ';
+                        });
+                    }
+
+                    // Format the extracted text
+                    const formattedText = formatResumeText(textContent);
+                    outputDiv.innerHTML = formattedText; // Display formatted text
+                    await generateInterviewQuestions(textContent); // Generate questions
+                };
+                fileReader.readAsArrayBuffer(file);
+            }
+        });
+
+        function formatResumeText(text) {
+            // Basic formatting: divide text into sections (this is a simple example)
+            const sections = {
+                "Contact Information": [],
+                "Education": [],
+                "Experience": [],
+                "Skills": [],
+                "Other": []
+            };
+
+            // Simple logic to categorize sections; can be improved with regex or more complex parsing
+            const lines = text.split('\n');
+            lines.forEach(line => {
+                if (line.toLowerCase().includes('email') || line.toLowerCase().includes('phone')) {
+                    sections["Contact Information"].push(line);
+                } else if (line.toLowerCase().includes('degree') || line.toLowerCase().includes('university')) {
+                    sections["Education"].push(line);
+                } else if (line.toLowerCase().includes('experience') || line.toLowerCase().includes('worked')) {
+                    sections["Experience"].push(line);
+                } else if (line.toLowerCase().includes('skills')) {
+                    sections["Skills"].push(line);
+                } else {
+                    sections["Other"].push(line);
+                }
+            });
+
+            // Construct HTML for formatted output
+            let formattedHTML = '';
+            for (const [key, value] of Object.entries(sections)) {
+                if (value.length > 0) {
+                    formattedHTML += `<h3>${key}</h3><ul>${value.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                }
+            }
+            return formattedHTML;
+        }
+
+        async function generateInterviewQuestions(text) {
+            questionPrompt.innerHTML = `<h1>Loading.....</h1>`;
+            const prompt = `Based on the following resume details, generate 100 relevant interview questions: ${text}`;
+            try {
+                const result = await model.generateContent(prompt);
+                const questions = result.response.text().trim();
+                questionPrompt.textContent = "Here are some interview questions:";
+                containerDiv.innerHTML += `<ul>${questions.split('\n').map(q => `<li>${q.trim()}</li>`).join('')}</ul>`;
+            } catch (error) {
+                console.error("Error:", error);
+                outputDiv.textContent += "\n\nAn error occurred while generating the questions.";
+            }
+        }
+    </script>
+</body>
+
+</html>

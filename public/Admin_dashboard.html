@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment Dashboard</title>
+    <link rel="stylesheet" href="nav&sideBAR.css">
+    <link rel="stylesheet" href="Admin_dashboard.css">
+    <!-- Include chart library (e.g., Chart.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOB-SAGE</div>
+        <div class="nav-menu">
+            <a href="#" id="nav-settings">
+                <ion-icon name="settings-outline"></ion-icon>
+                <span>Settings</span>
+            </a>
+            <a href="#" id="nav-logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log out</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user">
+                <div class="user-avatar">
+                    <p id="user-initials"></p>
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-designation"></p>
+                </div>
+            </div>
+            <ul class="menu one">
+                <li class="active">
+                    <a href="Admin_dashboard.html">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span>Recruiter Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Admin_Jobs.html">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <span>Job Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                      <ion-icon name="people-outline"></ion-icon>
+                      <span>Applicants</span>
+                    </a>
+                  </li>
+                <li>
+                    <a href="">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <span>Interview</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr"></div>
+            <ul class="menu two">
+                <li>
+                    <a href="#">
+                        <ion-icon name="help-circle-outline"></ion-icon>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="events">
+            <div class="dashboard-container">
+                <header>
+                    <h1>Recruitment Dashboard</h1>
+                    <div class="header-actions">
+                        <label for="dateRange">Date Range</label>
+                        <input type="text" id="dateRange" placeholder="Select date range">
+                        <button id="refreshButton">Refresh</button>
+                    </div>
+                </header>
+
+                <section id="keyMetrics">
+                    <h2>Key Metrics</h2>
+                    <div class="metrics">
+                        <div class="metric">
+                            <h3>Total Applications</h3>
+                            <p id="totalApplications">0</p>
+                        </div>
+                        <div class="metric">
+                            <h3>Applications in Progress</h3>
+                            <p id="applicationsInProgress">0</p>
+                        </div>
+                        <div class="metric">
+                            <h3>Hired Candidates</h3>
+                            <p id="hiredCandidates">0</p>
+                        </div>
+                        <div class="metric">
+                            <h3>Rejected Candidates</h3>
+                            <p id="rejectedCandidates">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div id="charts">
+                    <div class="chart-container">
+                        <div class="chart">
+                            <canvas id="applicationsOverTimeChart"></canvas>
+                        </div>
+                        <div class="chart">
+                            <canvas id="applicationsByStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <section id="detailedMetrics">
+                    <h2>Applications Table</h2>
+                    <br>
+                    <table id="applicationsTable">
+                        <thead>
+                            <tr>
+                                <th>Applicant Name</th>
+                                <th>Position</th>
+                                <th>Source</th>
+                                <th>Date Applied</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Example application rows -->
+                            <!-- Add more application rows dynamically -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+
+
+    <div class="overlay" id="applicationDetailsModal">
+        <div class="application-details-container">
+            <header>
+                <h1>Application Details</h1>
+                <button id="closeModalButton" class="close-button">X</button>
+            </header>
+
+            <section id="applicantInformation">
+                <h2>Applicant Information</h2>
+                <div class="info-item">
+                    <span class="info-label">Name:</span>
+                    <span id="applicantName"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Applied for:</span>
+                    <span id="positionApplied"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Source:</span>
+                    <span id="source"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Date Applied:</span>
+                    <span id="dateApplied"></span>
+                </div>
+            </section>
+            <br>
+            <section id="applicationStatus">
+                <h2>Application Status</h2>
+                <div class="info-item">
+                    <span class="info-label">Current Status:</span>
+                    <span id="currentStatus">I</span>
+                </div>
+                <br>
+                <h3>Status History</h3>
+                <table id="statusHistory">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Status history rows will be added dynamically -->
+                    </tbody>
+                </table>
+            </section>
+            <br>
+            <br>
+        </div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="Admin_dashboard.js"></script>
+</body>
+
+</html>

@@ -60,7 +60,7 @@ function fetchAndDisplayJobSeekerDetails() {
     const sessionData = getUserSession();
     const jobSeekerId = sessionData.userId; // Assumes userId is stored in session
     console.log(jobSeekerId);
-    
+
     // Reference to the specific document in the JobSeeker collection
     const jobSeekerRef = doc(db, 'JobSeeker', jobSeekerId); // Use doc() to refer to the document
 
@@ -122,7 +122,7 @@ function loadProfileForEditing() {
     const sessionData = getUserSession();
     const jobSeekerId = sessionData.userId; // Assumes userId is stored in session
     console.log(jobSeekerId);
-    
+
     // Reference to the specific document in the JobSeeker collection
     const jobSeekerRef = doc(db, 'JobSeeker', jobSeekerId);
 
@@ -207,5 +207,25 @@ window.editProfile = function () {
     openEditProfile();       // Then open the overlay
 }
 
+// Function to handle user sign out
+window.signOut = async function () {
+    // Clear session data
+    clearUserSession(); // Function to clear your session storage or cookies
+    alert("You have successfully signed out.");
+    window.location.href = 'index.html'; // Change to your login page URL
+};
 
+// Attach the sign out logic to the logout link
+document.getElementById("nav-logout").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default anchor click behavior
+    signOut(); // Call the sign-out function
+});
+
+// Function to clear user session (example implementation)
+function clearUserSession() {
+    // Clear specific session data (localStorage, sessionStorage, cookies, etc.)
+    localStorage.removeItem('userSession'); // Adjust based on your implementation
+    sessionStorage.clear(); // Clear session storage if you're using it
+    // Optionally clear cookies if you're using them
+}
 

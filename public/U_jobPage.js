@@ -216,7 +216,6 @@ window.applyJob = async function (jobId) {
         const jobDoc = await getDoc(jobDocRef);
 
         window.currentJobId = jobId;
-        console.log("5 -- ", jobId);
 
 
         if (jobDoc.exists()) {
@@ -255,7 +254,6 @@ window.submitJobApplication = async function (event) {
     }
 
     const userId = sessionData.userId; // Assuming sessionData has a userId field
-    console.log("00--", userId);
 
     const userRef = doc(db, "JobSeeker", userId); // Reference to the user's document in JobSeeker collection
 
@@ -334,6 +332,8 @@ window.submitJobApplication = async function (event) {
             userId,
             appliedAt: new Date(),
         });
+
+        
 
 
         alert("Application submitted successfully!");
