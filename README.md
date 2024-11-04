@@ -49,7 +49,9 @@ To set up and run JobSage locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/jobsage.git
+   git clone https://github.com/kashukartik/jobsage.git
+   ```
+   ``` bash
    cd jobsage
    ```
 
@@ -85,6 +87,17 @@ To set up and run JobSage locally, follow these steps:
 - **Advanced Analytics**: Detailed reports on recruitment trends.
 - **In-App Messaging**: Communication between job seekers and recruiters.
 
+## Live Demo
+
+You can view a live demo of the JobSage at the following link:
+
+### [JobSage - Smart Recruiting Platform ]
+```bash
+https://job-sage-recuiter.netlify.app/
+```
+
+
+
 ## Contributing
 Contributions are welcome! If you'd like to contribute to JobSage, please follow these steps:
 1. Fork the repository.
@@ -94,4 +107,9 @@ Contributions are welcome! If you'd like to contribute to JobSage, please follow
 5. Open a pull request.
 
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Thanks to all contributors and developers who inspired this project.
